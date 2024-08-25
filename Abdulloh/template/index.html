@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie va Session Boshqaruvi</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            margin-top: 50px;
+            flex: 1;
+        }
+        h1 {
+            color: #343a40;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .card-header {
+            background-color: #343a40;
+            color: #fff;
+        }
+        .btn {
+            margin: 5px;
+        }
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        footer a {
+            color: #ffc107;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .row > .col {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Cookie va Session Boshqaruvi</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Cookie Boshqaruvi
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'set_cookie' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="cookie_name">Cookie nomi:</label>
+                            <input type="text" class="form-control" id="cookie_name" name="cookie_name" placeholder="Cookie nomini kiriting" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cookie_value">Cookie qiymati:</label>
+                            <input type="text" class="form-control" id="cookie_value" name="cookie_value" placeholder="Cookie qiymatini kiriting" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Cookie qo'shish</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header">
+                    Cookie Yangilash
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'update_cookie' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="cookie_name_update">Cookie nomi:</label>
+                            <input type="text" class="form-control" id="cookie_name_update" name="cookie_name" placeholder="Cookie nomini kiriting" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cookie_value_update">Yangi Cookie qiymati:</label>
+                            <input type="text" class="form-control" id="cookie_value_update" name="cookie_value_update" placeholder="Yangi cookie qiymatini kiriting" required>
+                        </div>
+                        <button type="submit" class="btn btn-warning">Cookie yangilash</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header">
+                    Cookie O'chirish
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'delete_cookie' %}" method="get">
+                        <div class="form-group">
+                            <label for="cookie_name_delete">Cookie nomi:</label>
+                            <input type="text" class="form-control" id="cookie_name_delete" name="cookie_name" placeholder="Cookie nomini kiriting" required>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Cookie o'chirish</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Session Boshqaruvi
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'set_session' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="session_name">Session nomi:</label>
+                            <input type="text" class="form-control" id="session_name" name="session_name" placeholder="Session nomini kiriting" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="session_value">Session qiymati:</label>
+                            <input type="text" class="form-control" id="session_value" name="session_value" placeholder="Session qiymatini kiriting" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Session qo'shish</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header">
+                    Session Yangilash
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'update_session' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="session_name_update">Session nomi:</label>
+                            <input type="text" class="form-control" id="session_name_update" name="session_name" placeholder="Session nomini kiriting" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="session_value_update">Yangi Session qiymati:</label>
+                            <input type="text" class="form-control" id="session_value_update" name="session_value_update" placeholder="Yangi session qiymatini kiriting" required>
+                        </div>
+                        <button type="submit" class="btn btn-warning">Session yangilash</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header">
+                    Session O'chirish
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'delete_session' %}" method="get">
+                        <div class="form-group">
+                            <label for="session_name_delete">Session nomi:</label>
+                            <input type="text" class="form-control" id="session_name_delete" name="session_name" placeholder="Session nomini kiriting" required>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Session o'chirish</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2024 Cookie va Session Boshqaruvi | <a href="#">Maxfiylik siyosati</a></p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
